@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 import android.widget.TextView;
 
@@ -14,10 +16,22 @@ import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
     Button[][] buttons = new Button[9][9];
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ToggleButton toggleButton = (ToggleButton) findViewById(R.id.toggleButton);
+        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    Toast.makeText(MainActivity.this, "깃발 꽂기", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "지뢰 찾기", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         TableLayout tableLayout = (TableLayout) findViewById(R.id.tableLayout);
         TableRow tableRow = null;
@@ -47,22 +61,12 @@ public class MainActivity extends AppCompatActivity {
             }
             tableLayout.addView(tableRow);
         }
+    }
+}
 
         /*TextView time=(TextView)findViewById(R.id.time_textview);
         TextView mine=(TextView)findViewById(R.id.mine_textview);
         time.setText("");
         mine.setText("");
-
-        TableLayout tableLayout = (TableLayout) findViewById(R.id.tableLayout);
-
-
-        ToggleButton toggleButton = (ToggleButton) findViewById(R.id.toggleButton);
-        @Override
-        public void onClick (View v){
-            ToggleButton toggleButton = (ToggleButton) findViewById(R.id.toggleButton);
-
-
-            }
-        }*/
     }
 }
