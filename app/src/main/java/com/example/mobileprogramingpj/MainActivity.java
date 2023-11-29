@@ -68,5 +68,4 @@ public class MainActivity extends AppCompatActivity {
         TextView mine=(TextView)findViewById(R.id.mine_textview);
         time.setText("");
         mine.setText("");
-    }
-}
+
